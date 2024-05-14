@@ -1,0 +1,13 @@
+.button-container {
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+  }
+  
+  .button-container button {
+    margin-right: 10px; /* Agrega un espacio entre los botones */
+  }
+  
+  /* Opcional: alinea los botones hacia la izquierda */
+  .button-container {
+    justify-content: flex-end;
+  }
+  

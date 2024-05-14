@@ -11,7 +11,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+    <img src="../../assets/icono.png" alt="Logo" style="max-width: 40px; max-height: 50px;">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,6 +23,21 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="pedidos">Pedidos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="elevadores">Elevadores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="balanceadoras">Balanceadoras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="desenllantadoras">Desenllantadoras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cabinas-de-pintura">Cabinas de pintura</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="lamparas-de-secado">Lámparas de secado</a>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="text" placeholder="Search">
@@ -31,11 +46,6 @@
     </div>
   </div>
 </nav>
-
-<div class="container-fluid mt-3">
-  <h3>Navbar Forms</h3>
-  <p>You can also include forms inside the navigation bar.</p>
-</div>
 <div class="container">
   <router-outlet></router-outlet>
 </div>
