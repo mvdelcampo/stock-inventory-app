@@ -27,5 +27,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Para correr en Docker:
-docker build -t angular-docker .
-docker run -p 4201:4200 angular-docker
+docker build -t stock-inventory-app .
+docker run -p 4201:4200 stock-inventory-app
