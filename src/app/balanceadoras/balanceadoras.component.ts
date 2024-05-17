@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductosServicio } from '../servicios/productos.service';
 
 @Component({
   selector: 'app-balanceadoras',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './balanceadoras.component.scss'
 })
 export class BalanceadorasComponent {
+  cantidadTotal: number = 0;
+  balanceadorasAgrupadas: any[] = [];
 
+  constructor(private service: ProductosServicio) {}
+
+  ngOnInit(): void {
+    this.obtenerBalanceadorasAgrupadas();
+    this.obtenerCantidadTotal();
+  }
+
+  obtenerBalanceadorasAgrupadas() {
+    this.balanceadorasAgrupadas = this.service.obtenerElevadoresAgrupados();
+  }
+  obtenerCantidadTotal() {
+    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores(); 
+  }
 }

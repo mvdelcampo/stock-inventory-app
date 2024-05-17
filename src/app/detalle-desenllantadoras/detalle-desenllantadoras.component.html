@@ -9,28 +9,28 @@
 <body>
 
 <div class="container mt-3">
-  <h2>Pedidos</h2>            
+
+  <h2>Desenllantadoras Modelo:  {{ modelo }}</h2>
   <table class="table table-hover">
     <thead class="table-primary">
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
+        <th>Código</th>
+        <th>Proveedor</th>
+        <th>Estado</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-      </tr>
-    </tbody>
+      <tr *ngFor="let elemento of detallesDesenllantadoras">
+          <td class="col-sm-4"> 
+            {{ elemento.codigo }}
+          </td>
+          <td class="col-sm-4">
+            {{ elemento.proveedor }}
+          </td>
+          <td class="col-sm-4">
+            {{ elemento.estado }}
+          </td>
+  </tbody>
   </table>
 </div>
 

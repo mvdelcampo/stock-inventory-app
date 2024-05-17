@@ -1,0 +1,38 @@
+.button-container {
+  display: flex; /* Utiliza flexbox para alinear los elementos */
+}
+
+.button-container button {
+  margin-right: 10px; /* Agrega un espacio entre los botones */
+}
+
+/* Opcional: alinea los botones hacia la izquierda */
+.button-container {
+  justify-content: flex-end;
+}
+
+.table-row-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.badge-celestito {
+  background-color: #CFE2FF;
+  color: #212529; /* Para que el texto sea visible sobre el fondo celeste */
+  font-size: 1.2rem; /* Tamaño del texto más pequeño */
+  padding: 0.3em 0.6em; /* Tamaño del badge */
+  margin-left: 10px; /* Espacio a la izquierda del badge */
+  vertical-align: middle; /* Alineación vertical al medio del título */
+}
+
+.badge-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.margin-top-20 {
+  margin-top: 15px;
+}

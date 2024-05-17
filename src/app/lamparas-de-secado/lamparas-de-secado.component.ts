@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductosServicio } from '../servicios/productos.service';
 
 @Component({
   selector: 'app-lamparas-de-secado',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './lamparas-de-secado.component.scss'
 })
 export class LamparasDeSecadoComponent {
+  cantidadTotal: number = 0;
+  lamparasAgrupadas: any[] = [];
 
+  constructor(private service: ProductosServicio) {}
+
+  ngOnInit(): void {
+    this.obtenerLamparasAgrupadas();
+    this.obtenerCantidadTotal();
+  }
+
+  obtenerLamparasAgrupadas() {
+    this.lamparasAgrupadas = this.service.obtenerElevadoresAgrupados();
+  }
+  obtenerCantidadTotal() {
+    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores();
+  }
 }
