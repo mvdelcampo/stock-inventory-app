@@ -6,7 +6,7 @@ import { ProductosServicio } from '../servicios/productos.service';
   templateUrl: './balanceadoras.component.html',
   styleUrl: './balanceadoras.component.scss'
 })
-export class BalanceadorasComponent {
+export class BalanceadorasComponent implements OnInit{
   cantidadTotal: number = 0;
   balanceadorasAgrupadas: any[] = [];
 

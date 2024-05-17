@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductosServicio } from '../servicios/productos.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ProductosServicio } from '../servicios/productos.service';
   templateUrl: './lamparas-de-secado.component.html',
   styleUrl: './lamparas-de-secado.component.scss'
 })
-export class LamparasDeSecadoComponent {
+export class LamparasDeSecadoComponent implements OnInit {
   cantidadTotal: number = 0;
   lamparasAgrupadas: any[] = [];
 

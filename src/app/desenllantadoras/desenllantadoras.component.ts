@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductosServicio } from '../servicios/productos.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ProductosServicio } from '../servicios/productos.service';
   templateUrl: './desenllantadoras.component.html',
   styleUrl: './desenllantadoras.component.scss'
 })
-export class DesenllantadorasComponent {
+export class DesenllantadorasComponent implements OnInit{
   cantidadTotal: number = 0;
   desenllantadorasAgrupadas: any[] = [];
 

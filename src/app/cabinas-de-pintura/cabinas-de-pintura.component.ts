@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductosServicio } from '../servicios/productos.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { ProductosServicio } from '../servicios/productos.service';
   templateUrl: './cabinas-de-pintura.component.html',
   styleUrl: './cabinas-de-pintura.component.scss'
 })
-export class CabinasDePinturaComponent {
+export class CabinasDePinturaComponent implements OnInit {
   cantidadTotal: number = 0;
   cabinasAgrupadas: any[] = [];
 
