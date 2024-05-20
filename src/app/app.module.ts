@@ -4,6 +4,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { PedidosServicio } from './servicios/pedidos.service';
 import { ElevadoresComponent } from './elevadores/elevadores.component';
 import { CabinasDePinturaComponent } from './cabinas-de-pintura/cabinas-de-pintura.component';
 import { BalanceadorasComponent } from './balanceadoras/balanceadoras.component';
@@ -33,9 +34,6 @@ import { DetalleLamparasDeSecadoComponent } from './detalle-lamparas-de-secado/d
   imports: [
     BrowserModule,
     AppRoutingModule
-  ],
-  providers: [
-    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })

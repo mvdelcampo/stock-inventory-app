@@ -36,3 +36,14 @@
 .margin-top-20 {
   margin-top: 15px;
 }
+.table-hover{
+  font-size: 0.95em;
+  text-align: center;
+  border: 1px solid #333; /* Add a fine border */
+  margin-top: 10px; /* Add some space above the details table */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+}
+.table-hover td, th {
+  border: 1px solid #333; /* Add a fine border */
+}

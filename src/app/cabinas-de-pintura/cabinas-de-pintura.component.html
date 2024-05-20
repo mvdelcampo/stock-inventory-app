@@ -21,7 +21,7 @@
       </div>
 
       <div class="badge-container margin-top-20">
-        <h2>Cabinas de Pintura en Stock</h2>
+        <h3>Cabinas de Pintura en Stock</h3>
         <span class="badge badge-celestito"
           >Cantidad total: {{ cantidadTotal }}</span
         >
@@ -30,6 +30,7 @@
       <table class="table table-hover">
         <thead class="table-primary">
           <tr>
+            <th> </th>
             <th>Modelo</th>
             <th>Marca</th>
             <th>Ubicación</th>
@@ -39,13 +40,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let cabina of cabinasAgrupadas">
-            <td class="col-sm-3">
+            <td class="col-sm-1"> 
               <a
-                class="btn btn-link icon-link"
+                class="btn btn-link icon-link btn-sm"
                 [routerLink]="['/cabinas-de-pintura/', cabina.modelo.toLowerCase()]"
               >
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
+            </td>
+            <td class="col-sm-2">
               {{ cabina.modelo }}
             </td>
             <td class="col-sm-2">

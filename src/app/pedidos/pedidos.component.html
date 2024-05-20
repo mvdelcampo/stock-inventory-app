@@ -29,29 +29,63 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pedido of pedidos">
-        <td class="col-sm-1">
-          {{ pedido.id }}
-        </td>
-        <td class="col-sm-1">
-          {{ pedido.productos }}
-        </td>
-        <td class="col-sm-2">
-          {{ pedido.fecha }}
-        </td>
-        <td class="col-sm-2">
-          {{ pedido.empresa }}
-        </td>
-        <td class="col-sm-2">
-          {{ pedido.estado }}
-        </td>
-        <td class="col-sm-2">
-          {{ pedido.precio }}
-        </td>
-        <td class="col-sm-2">
-          {{ pedido.usuario }}
-        </td>
-      </tr>
+      <ng-container *ngFor="let pedido of pedidos">
+        <tr>
+          <td class="col-sm-1">
+            {{ pedido.id }}
+          </td>
+          <td class="col-sm-1">
+            <button class="btn btn-link btn-sm" (click)="toggleDetails(pedido.id)">
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </td>
+          <td class="col-sm-2">
+            {{ pedido.fecha }}
+          </td>
+          <td class="col-sm-2">
+            {{ pedido.empresa }}
+          </td>
+          <td class="col-sm-2">
+            {{ pedido.estado }}
+          </td>
+          <td class="col-sm-2">
+            {{ pedido.precio }}
+          </td>
+          <td class="col-sm-2">
+            {{ pedido.usuario }}
+          </td>
+        </tr>
+        <tr *ngIf="pedidoExpandidoId === pedido.id">
+          <td colspan="7">
+            <table class="table table-details">
+              <thead class="table-details-header">
+                <tr>
+                  <th>Código</th>
+                  <th>Tipo</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Ubicación</th>
+                  <th>Proveedor</th>
+                  <th>Precio</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of pedido.productos">
+                  <td>{{ producto.codigo }}</td>
+                  <td>{{ producto.tipo }}</td>
+                  <td>{{ producto.marca }}</td>
+                  <td>{{ producto.modelo }}</td>
+                  <td>{{ producto.ubicacion }}</td>
+                  <td>{{ producto.proveedor }}</td>
+                  <td>{{ producto.precio }}</td>
+                  <td>{{ producto.estado }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

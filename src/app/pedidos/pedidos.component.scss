@@ -37,3 +37,29 @@
     margin-top: 15px;
   }
   
+  .table-details {
+    font-size: 0.7em; /* Reduce the font size for the details table */
+    border: 1px solid #333; /* Add a fine border */
+    margin-top: 10px; /* Add some space above the details table */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+  }
+  
+  .table-details-header th {
+    font-weight: bold; /* Make the header text bold */
+    text-align: center; /* Center align the header text */
+    background-color: #d6e4f9; /* Custom background color for the details table header */
+    color: #333;
+  }
+
+  .table-hover{
+    font-size: 1em;
+    text-align: center;
+    border: 1px solid #333; /* Add a fine border */
+    margin-top: 10px; /* Add some space above the details table */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+  }
+  .table-hover td, th {
+    border: 1px solid #333; /* Add a fine border */
+  }
