@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductosServicio } from '../servicios/productos.service';
 
@@ -7,7 +7,7 @@ import { ProductosServicio } from '../servicios/productos.service';
   templateUrl: './detalle-balanceadoras.component.html',
   styleUrl: './detalle-balanceadoras.component.scss'
 })
-export class DetalleBalanceadorasComponent {
+export class DetalleBalanceadorasComponent implements OnInit{
   modelo: string = "";
   detallesBalanceadoras: any[] = [];
 
@@ -18,13 +18,20 @@ export class DetalleBalanceadorasComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.modelo = params.get('modelo') || ''; // Si params.get('modelo') es null, asigna una cadena vacía
-      this.obtenerDetallesBalanceadoras();
+      this.modelo = params.get('modelo') || "";
+      this.obtenerDetallesBalanceadoras(this.modelo);
     });
   }
 
-  obtenerDetallesBalanceadoras() {
-    // Utiliza el servicio para obtener los detalles de los elevadores correspondientes al modelo
-    this.detallesBalanceadoras = this.service.obtenerDetallesElevadoresPorModelo(this.modelo);
+  obtenerDetallesBalanceadoras(modelo: string): void{
+    this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
+      (response) => {
+        this.detallesBalanceadoras = response;
+        console.log(this.detallesBalanceadoras);
+      },
+      (error) => {
+        console.error('Error al obtener datos', error);
+      }
+    );
   }
 }

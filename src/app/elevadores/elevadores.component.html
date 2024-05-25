@@ -8,20 +8,23 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container mt-3">
       <div class="button-container margin-top-20">
         <button type="button" class="btn btn-outline-primary">
-          Modificar Stock
+          Agregar Stock
         </button>
-        <button type="button" class="btn btn-outline-primary">
+        <button type="button" class="btn btn-outline-primary" routerLink="/nuevo-producto">
           Cargar nuevo producto
         </button>
       </div>
 
       <div class="badge-container margin-top-20">
-        <h3>Elevadores en Stock</h3>
+        <h3 class="dm-sans-titulos">Elevadores en Stock</h3>
         <span class="badge badge-celestito"
           >Cantidad total: {{ cantidadTotal }}</span
         >

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductosServicio } from '../servicios/productos.service';
 
@@ -7,7 +7,7 @@ import { ProductosServicio } from '../servicios/productos.service';
   templateUrl: './detalle-lamparas-de-secado.component.html',
   styleUrl: './detalle-lamparas-de-secado.component.scss'
 })
-export class DetalleLamparasDeSecadoComponent {
+export class DetalleLamparasDeSecadoComponent implements OnInit{
   modelo: string = "";
   detallesLamparas: any[] = [];
 
@@ -18,13 +18,23 @@ export class DetalleLamparasDeSecadoComponent {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.modelo = params.get('modelo') || ''; // Si params.get('modelo') es null, asigna una cadena vacía
-      this.obtenerDetallesLamparas();
+      this.modelo = params.get('modelo') || "";
+      this.obtenerDetallesLamparas(this.modelo);
     });
   }
 
-  obtenerDetallesLamparas() {
-    // Utiliza el servicio para obtener los detalles de los elevadores correspondientes al modelo
-    this.detallesLamparas = this.service.obtenerDetallesElevadoresPorModelo(this.modelo);
+  obtenerDetallesLamparas(modelo: string): void{
+    this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
+      (response) => {
+        this.detallesLamparas = response;
+        console.log(this.detallesLamparas);
+      },
+      (error) => {
+        console.error('Error al obtener datos', error);
+      }
+    );
   }
+
 }
+
+

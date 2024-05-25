@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosServicio {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   obtenerElevadoresAgrupados() { // cambiar por el servicio que busque todo segun el tipo
     // Supongamos que aquí realizas una solicitud HTTP para obtener los datos de los productos
@@ -16,18 +18,16 @@ export class ProductosServicio {
       { marca: 'InkPro', modelo: '3000', ubicacion: 'Depósito Pocitos', precio: '$ 45000', cantidad: 20 }
     ];
   }
-  obtenerDetallesElevadoresPorModelo(modelo: string): any[] { // cambiar por el servicio que busque todo segun el tipo
-    // Aquí puedes escribir lógica para obtener los detalles de los elevadores por modelo
-    // Por ejemplo, podrías hacer una llamada HTTP a un servidor para obtener los detalles
-    // O podrías simplemente devolver datos simulados para este ejemplo
+  obtenerDetallesProductosPorModelo(modelo: string): Observable<any> {
 
-    // Supongamos que aquí tienes una llamada HTTP para obtener los detalles de los elevadores
-    // En este ejemplo, simplemente devolveremos datos simulados
-    return [
+    const params = new HttpParams().set('modelo', modelo);
+    return this.http.get<any>("https://iru0rmgkri.execute-api.us-east-2.amazonaws.com/dev/", { params });
+
+    /*return [
       { codigo: 1, proveedor: 'Maquinas de Calidad SA', estado: "En Stock"},
       { codigo: 2, proveedor: 'Super equipos SA', estado: "Vendido" },
       // Otros detalles de los elevadores
-    ];
+    ];*/
   }
 
   obtenerCantidadTotalElevadores(){ // cambiar por el servicio que busque todo segun el tipo

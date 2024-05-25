@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { DetalleBalanceadorasComponent } from './detalle-balanceadoras/detalle-b
 import { DetalleDesenllantadorasComponent } from './detalle-desenllantadoras/detalle-desenllantadoras.component';
 import { DetalleCabinasDePinturaComponent } from './detalle-cabinas-de-pintura/detalle-cabinas-de-pintura.component';
 import { DetalleLamparasDeSecadoComponent } from './detalle-lamparas-de-secado/detalle-lamparas-de-secado.component';
+import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,15 @@ import { DetalleLamparasDeSecadoComponent } from './detalle-lamparas-de-secado/d
     DetalleDesenllantadorasComponent,
     DetalleCabinasDePinturaComponent,
     DetalleLamparasDeSecadoComponent,
+    NuevoProductoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    provideHttpClient(withFetch()) // Configurar HttpClient para usar fetch
   ],
   bootstrap: [AppComponent]
 })

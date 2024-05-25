@@ -1,0 +1,38 @@
+.container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+.form-title {
+margin-bottom: 20px;
+}
+.form-group label {
+font-weight: 500;
+}
+.btn-primary {
+background-color: #71a6f5;
+border-color: #2788f1;
+}
+.btn-primary:hover {
+background-color: #2788f1;
+border-color: #2788f1;
+}
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 1000
+
+.dm-sans-titulos {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+.form-container form {
+    max-width: 700px;
+    width: 100%;
+}

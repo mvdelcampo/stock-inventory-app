@@ -9,7 +9,7 @@ import { ProductosServicio } from '../servicios/productos.service';
 })
 export class DetalleElevadoresComponent implements OnInit {
   modelo: string = "";
-  detallesElevadores: any[] = [];
+  detallesElevadores: any[] = [] ;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,14 +18,21 @@ export class DetalleElevadoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.modelo = params.get('modelo') || ''; // Si params.get('modelo') es null, asigna una cadena vacía
-      this.obtenerDetallesElevadores();
+      this.modelo = params.get('modelo') || "";
+      this.obtenerDetallesElevadores(this.modelo);
     });
   }
 
-  obtenerDetallesElevadores() {
-    // Utiliza el servicio para obtener los detalles de los elevadores correspondientes al modelo
-    this.detallesElevadores = this.service.obtenerDetallesElevadoresPorModelo(this.modelo);
+  obtenerDetallesElevadores(modelo: string): void{
+    this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
+      (response) => {
+        this.detallesElevadores = response;
+        console.log(this.detallesElevadores);
+      },
+      (error) => {
+        console.error('Error al obtener datos', error);
+      }
+    );
   }
 
 }

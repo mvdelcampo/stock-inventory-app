@@ -11,6 +11,7 @@ import { DetalleBalanceadorasComponent } from './detalle-balanceadoras/detalle-b
 import { DetalleDesenllantadorasComponent } from './detalle-desenllantadoras/detalle-desenllantadoras.component';
 import { DetalleCabinasDePinturaComponent } from './detalle-cabinas-de-pintura/detalle-cabinas-de-pintura.component';
 import { DetalleLamparasDeSecadoComponent } from './detalle-lamparas-de-secado/detalle-lamparas-de-secado.component';
+import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/pedidos', pathMatch: 'full' },  // Ruta por defecto
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: "desenllantadoras/:modelo", component: DetalleDesenllantadorasComponent},
   {path: "cabinas-de-pintura/:modelo", component: DetalleCabinasDePinturaComponent},
   {path: "lamparas-de-secado/:modelo", component: DetalleLamparasDeSecadoComponent},
+  { path: 'nuevo-producto', component: NuevoProductoComponent },
 ];
 
 @NgModule({

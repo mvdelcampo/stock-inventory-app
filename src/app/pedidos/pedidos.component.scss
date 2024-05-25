@@ -1,65 +1,71 @@
 .button-container {
-    display: flex; /* Utiliza flexbox para alinear los elementos */
-  }
-  
-  .button-container button {
-    margin-right: 10px; /* Agrega un espacio entre los botones */
-  }
-  
-  /* Opcional: alinea los botones hacia la izquierda */
-  .button-container {
-    justify-content: flex-end;
-  }
+display: flex; /* Utiliza flexbox para alinear los elementos */
+}
 
-  .table-row-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  
-  .badge-celestito {
-    background-color: #CFE2FF;
-    color: #212529; /* Para que el texto sea visible sobre el fondo celeste */
-    font-size: 1.2rem; /* Tamaño del texto más pequeño */
-    padding: 0.3em 0.6em; /* Tamaño del badge */
-    margin-left: 10px; /* Espacio a la izquierda del badge */
-    vertical-align: middle; /* Alineación vertical al medio del título */
-  }
+.button-container button {
+margin-right: 10px; /* Agrega un espacio entre los botones */
+}
 
-  .badge-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+/* Opcional: alinea los botones hacia la izquierda */
+.button-container {
+justify-content: flex-end;
+}
 
-  .margin-top-20 {
-    margin-top: 15px;
-  }
-  
-  .table-details {
-    font-size: 0.7em; /* Reduce the font size for the details table */
-    border: 1px solid #333; /* Add a fine border */
-    margin-top: 10px; /* Add some space above the details table */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
-  }
-  
-  .table-details-header th {
-    font-weight: bold; /* Make the header text bold */
-    text-align: center; /* Center align the header text */
-    background-color: #d6e4f9; /* Custom background color for the details table header */
-    color: #333;
-  }
+.table-row-button {
+background: none;
+border: none;
+padding: 0;
+cursor: pointer;
+}
 
-  .table-hover{
-    font-size: 1em;
-    text-align: center;
-    border: 1px solid #333; /* Add a fine border */
-    margin-top: 10px; /* Add some space above the details table */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
-  }
-  .table-hover td, th {
-    border: 1px solid #333; /* Add a fine border */
-  }
+.badge-celestito {
+background-color: #CFE2FF;
+color: #212529; /* Para que el texto sea visible sobre el fondo celeste */
+font-size: 1.2rem; /* Tamaño del texto más pequeño */
+padding: 0.3em 0.6em; /* Tamaño del badge */
+margin-left: 10px; /* Espacio a la izquierda del badge */
+vertical-align: middle; /* Alineación vertical al medio del título */
+}
+
+.badge-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.margin-top-20 {
+  margin-top: 15px;
+}
+
+.table-details {
+  font-size: 0.7em; /* Reduce the font size for the details table */
+  border: 1px solid #333; /* Add a fine border */
+  margin-top: 10px; /* Add some space above the details table */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+}
+
+.table-details-header th {
+  font-weight: bold; /* Make the header text bold */
+  text-align: center; /* Center align the header text */
+  background-color: #d6e4f9; /* Custom background color for the details table header */
+  color: #333;
+}
+
+.table-hover{
+  font-size: 1em;
+  text-align: center;
+  border: 1px solid #333; /* Add a fine border */
+  margin-top: 10px; /* Add some space above the details table */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+}
+.table-hover td, th {
+  border: 1px solid #333; /* Add a fine border */
+}
+.dm-sans-titulos {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}

@@ -20,16 +20,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let elemento of detallesLamparas">
-          <td class="col-sm-4"> 
-            {{ elemento.codigo }}
-          </td>
-          <td class="col-sm-4">
-            {{ elemento.proveedor }}
-          </td>
-          <td class="col-sm-4">
-            {{ elemento.estado }}
-          </td>
+      <div *ngIf="detallesLamparas">
+        <tr *ngFor="let elemento of detallesLamparas">
+            <td class="col-sm-4"> 
+              {{ elemento.codigo }}
+            </td>
+            <td class="col-sm-4">
+              {{ elemento.proveedor }}
+            </td>
+            <td class="col-sm-4">
+              {{ elemento.estado }}
+            </td>
+          </tr>
+        </div>
   </tbody>
   </table>
 </div>
