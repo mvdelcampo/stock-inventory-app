@@ -1,69 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container mt-5">
-      <h3 class="form-title dm-sans-titulos text-center">Cargar nuevo producto</h3>
-      <div class="form-container">
-        <form action="#">
-          <div class="mb-3 form-group">
-            <label for="codigo">Código de barras:</label>
-            <input type="text" class="form-control" id="codigo" />
-          </div>
-          <div class="mb-3 form-group">
-            <label for="tipo">Tipo:</label>
-            <select class="form-control" id="tipo">
-              <option value="Elevador">Elevador</option>
-              <option value="Balanceadora">Balanceadora</option>
-              <option value="Desenllantadora">Desenllantadora</option>
-              <option value="Cabina_de_pintura">Cabina de pintura</option>
-              <option value="Lampara_de_secado">Lámpara de secado</option>
-            </select>
-          </div>
-          <div class="mb-3 form-group">
-            <label for="marca">Marca:</label>
-            <input type="text" class="form-control" id="marca" />
-          </div>
-          <div class="mb-3 form-group">
-            <label for="modelo">Modelo:</label>
-            <input type="text" class="form-control" id="modelo" />
-          </div>
-          <div class="mb-3 form-group">
-            <label for="ubicacion">Ubicación:</label>
-            <select class="form-control" id="ubicacion">
-              <option value="Deposito Central">Depósito Central</option>
-              <option value="Deposito Malvin">Depósito Malvin</option>
-              <option value="Deposito Belvedere">Depósito Belvedere</option>
-            </select>
-          </div>
-          <div class="mb-3 form-group">
-            <label for="proveedor">Proveedor:</label>
-            <input type="text" class="form-control" id="proveedor" />
-          </div>
-          <div class="mb-3 form-group">
-            <label for="precio">Precio:</label>
-            <div class="input-group">
-              <span class="input-group-text">USD</span>
-              <input type="number" class="form-control" id="precio" min="0" />
-            </div>
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Cargar producto</button>
-          </div>
-          
-        </form>
+<div class="container mt-5">
+  <h3 class="form-title dm-sans-titulos text-center">Cargar nuevo producto</h3>
+  <div class="form-container">
+    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3 form-group">
+        <label for="codigo">Código de barras:</label>
+        <input type="text" class="form-control" id="codigo" formControlName="codigo" />
+        <div *ngIf="productoForm.controls['codigo'].invalid && productoForm.controls['codigo'].touched" class="text-danger">
+          Código de barras es obligatorio
+        </div>
       </div>
-    </div>
-  </body>
-</html>
+      <div class="mb-3 form-group">
+        <label for="tipo">Tipo:</label>
+        <select class="form-control" id="tipo" formControlName="tipo">
+          <option value="">Seleccione un tipo</option>
+          <option value="Elevador">Elevador</option>
+          <option value="Balanceadora">Balanceadora</option>
+          <option value="Desenllantadora">Desenllantadora</option>
+          <option value="Cabina_de_pintura">Cabina de pintura</option>
+          <option value="Lampara_de_secado">Lámpara de secado</option>
+        </select>
+        <div *ngIf="productoForm.controls['tipo'].invalid && productoForm.controls['tipo'].touched" class="text-danger">
+          Tipo es obligatorio
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <label for="marca">Marca:</label>
+        <input type="text" class="form-control" id="marca" formControlName="marca" />
+        <div *ngIf="productoForm.controls['marca'].invalid && productoForm.controls['marca'].touched" class="text-danger">
+          Marca es obligatoria
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <label for="modelo">Modelo:</label>
+        <input type="text" class="form-control" id="modelo" formControlName="modelo" />
+        <div *ngIf="productoForm.controls['modelo'].invalid && productoForm.controls['modelo'].touched" class="text-danger">
+          Modelo es obligatorio
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <label for="ubicacion">Ubicación:</label>
+        <select class="form-control" id="ubicacion" formControlName="ubicacion">
+          <option value="">Seleccione una ubicación</option>
+          <option value="Deposito Central">Depósito Central</option>
+          <option value="Deposito Malvin">Depósito Malvin</option>
+          <option value="Deposito Belvedere">Depósito Belvedere</option>
+        </select>
+        <div *ngIf="productoForm.controls['ubicacion'].invalid && productoForm.controls['ubicacion'].touched" class="text-danger">
+          Ubicación es obligatoria
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <label for="proveedor">Proveedor:</label>
+        <input type="text" class="form-control" id="proveedor" formControlName="proveedor" />
+        <div *ngIf="productoForm.controls['proveedor'].invalid && productoForm.controls['proveedor'].touched" class="text-danger">
+          Proveedor es obligatorio
+        </div>
+      </div>
+      <div class="mb-3 form-group">
+        <label for="precio">Precio:</label>
+        <div class="input-group">
+          <span class="input-group-text">USD</span>
+          <input type="number" class="form-control" id="precio" formControlName="precio" min="0" />
+        </div>
+        <div *ngIf="productoForm.controls['precio'].invalid && productoForm.controls['precio'].touched" class="text-danger">
+          Precio es obligatorio y debe ser mayor o igual a 0
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="productoForm.invalid">Cargar producto</button>
+      </div>
+    </form>
+  </div>
+</div>

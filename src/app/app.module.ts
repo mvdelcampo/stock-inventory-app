@@ -17,6 +17,9 @@ import { DetalleDesenllantadorasComponent } from './detalle-desenllantadoras/det
 import { DetalleCabinasDePinturaComponent } from './detalle-cabinas-de-pintura/detalle-cabinas-de-pintura.component';
 import { DetalleLamparasDeSecadoComponent } from './detalle-lamparas-de-secado/detalle-lamparas-de-secado.component';
 import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NuevoPedidoComponent } from './nuevo-pedido/nuevo-pedido.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -33,14 +36,17 @@ import { NuevoProductoComponent } from './nuevo-producto/nuevo-producto.componen
     DetalleCabinasDePinturaComponent,
     DetalleLamparasDeSecadoComponent,
     NuevoProductoComponent,
+    NuevoPedidoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    provideHttpClient(withFetch()) // Configurar HttpClient para usar fetch
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync() // Configurar HttpClient para usar fetch
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <h3 class="form-title dm-sans-titulos text-center">Cargar nuevo pedido</h3>
+    <div class="form-container">
+        <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3 form-group">
+          <label for="fecha">Fecha:</label>
+          <input type="date" class="form-control" id="fecha" formControlName="fecha" />
+          <div *ngIf="pedidoForm.controls['fecha'].invalid && pedidoForm.controls['fecha'].touched" class="text-danger">
+            Fecha es obligatoria
+          </div>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="empresa">Empresa:</label>
+          <input type="text" class="form-control" id="empresa" formControlName="empresa" />
+          <div *ngIf="pedidoForm.controls['empresa'].invalid && pedidoForm.controls['empresa'].touched" class="text-danger">
+            Empresa es obligatoria
+            </div>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="estado">Estado:</label>
+          <select class="form-control" id="estado" formControlName="estado">
+            <option value="">Seleccione el estado en el que se encuentra el pedido</option>
+            <option value="En proceso">En proceso</option>
+            <option value="En camino">En camino</option>
+            <option value="Entregado">Entregado</option>
+          </select>
+          <div *ngIf="pedidoForm.controls['estado'].invalid && pedidoForm.controls['estado'].touched" class="text-danger">
+            Estado es obligatorio
+          </div>
+        </div>
+        <div class="mb-3 form-group">
+            <div class="mb-3 form-group">
+                <label for="codigoBarras">Ingrese los códigos de barras de los productos:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="codigoBarras" #codigoBarrasInput (keyup.enter)="agregarCodigoBarras(codigoBarrasInput.value)" />
+                    <button class="btn btn-outline-secondary" type="button" (click)="agregarCodigoBarras(codigoBarrasInput.value)">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+            <div class="mb-3 form-group">
+                <span *ngFor="let codigo of codigosBarras" class="badges-container mr-2">
+                    <button class="badge badge-info">{{ codigo }}</button>
+                    <span class="badge-close" (click)="eliminarCodigoBarras(codigo)">x</span>
+                </span>
+                <div *ngIf="pedidoForm.controls['productos'].invalid && pedidoForm.controls['productos'].touched" class="text-danger">
+                    Productos es obligatorio
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="pedidoForm.invalid">Cargar pedido</button>
+        </div>
+      </form>
+    </div>
+</div>
+  
