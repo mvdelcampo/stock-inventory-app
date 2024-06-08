@@ -14,13 +14,23 @@ export class DesenllantadorasComponent implements OnInit{
 
   ngOnInit(): void {
     this.obtenerDesenllantadorasAgrupadas();
-    this.obtenerCantidadTotal();
+    this.service.obtenerCantidadTotalProductos("Desenllantadora").subscribe(
+      total => {
+        console.log('Total productos:', total);
+        this.cantidadTotal = total;
+      },
+      error => {
+        console.error('Error al obtener la cantidad total de productos', error);
+      }
+    );
   }
 
-  obtenerDesenllantadorasAgrupadas() {
-    this.desenllantadorasAgrupadas = this.service.obtenerElevadoresAgrupados();
-  }
-  obtenerCantidadTotal() {
-    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores();
+  obtenerDesenllantadorasAgrupadas(): void {
+    this.service.obtenerProductosAgrupados("Desenllantadora").subscribe(data => {
+      this.desenllantadorasAgrupadas = data;
+      console.log(data);
+    }, error => {
+      console.error('Error al obtener los productos agrupados', error);
+    });
   }
 }

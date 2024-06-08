@@ -14,14 +14,24 @@ export class ElevadoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerElevadoresAgrupados();
-    this.obtenerCantidadTotal();
+    this.service.obtenerCantidadTotalProductos("Elevador").subscribe(
+      total => {
+        console.log('Total productos:', total);
+        this.cantidadTotal = total;
+      },
+      error => {
+        console.error('Error al obtener la cantidad total de productos', error);
+      }
+    );
   }
 
-  obtenerElevadoresAgrupados() {
-    this.elevadoresAgrupados = this.service.obtenerElevadoresAgrupados();
-  }
-  obtenerCantidadTotal() {
-    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores();
+  obtenerElevadoresAgrupados(): void {
+    this.service.obtenerProductosAgrupados("Elevador").subscribe(data => {
+      this.elevadoresAgrupados = data;
+      console.log(data);
+    }, error => {
+      console.error('Error al obtener los productos agrupados', error);
+    });
   }
 
 }

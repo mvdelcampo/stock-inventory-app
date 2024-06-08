@@ -24,14 +24,10 @@ export class DetalleBalanceadorasComponent implements OnInit{
   }
 
   obtenerDetallesBalanceadoras(modelo: string): void{
-    this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
-      (response) => {
-        this.detallesBalanceadoras = response;
-        console.log(this.detallesBalanceadoras);
-      },
-      (error) => {
-        console.error('Error al obtener datos', error);
-      }
-    );
+    this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(data => {
+      this.detallesBalanceadoras = data;
+    }, error =>{
+      console.error('Error al obtener los detalles de los productos', error);
+    });
   }
 }

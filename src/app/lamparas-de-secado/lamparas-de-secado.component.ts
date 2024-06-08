@@ -14,13 +14,23 @@ export class LamparasDeSecadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerLamparasAgrupadas();
-    this.obtenerCantidadTotal();
+    this.service.obtenerCantidadTotalProductos("Lampara de secado").subscribe(
+      total => {
+        console.log('Total productos:', total);
+        this.cantidadTotal = total;
+      },
+      error => {
+        console.error('Error al obtener la cantidad total de productos', error);
+      }
+    );
+  }
+  obtenerLamparasAgrupadas(): void {
+    this.service.obtenerProductosAgrupados("Lampara de secado").subscribe(data => {
+      this.lamparasAgrupadas = data;
+      console.log(data);
+    }, error => {
+      console.error('Error al obtener los productos agrupados', error);
+    });
   }
 
-  obtenerLamparasAgrupadas() {
-    this.lamparasAgrupadas = this.service.obtenerElevadoresAgrupados();
-  }
-  obtenerCantidadTotal() {
-    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores();
-  }
 }
