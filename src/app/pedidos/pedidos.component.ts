@@ -39,11 +39,12 @@ export class PedidosComponent implements OnInit{
     this.obtenerPedidos();
   }
 
+
   async obtenerPedidos() {
     try {
       const response = await this.service.ListPedidos();
       this.pedidos = [];
-      const productos: Producto[] = [];
+      const productosPrueba: Producto[] = [];
       const producto: Producto = {
         codigo: 0,
         tipo: "prueba",
@@ -54,17 +55,18 @@ export class PedidosComponent implements OnInit{
         precio: 0,
         estado: "pueba5"
       };
-      productos.push(producto);
+      productosPrueba.push(producto);
       if (response.items) {
         for (const item of response.items) {
           if (item) {
+            const productos = item.Productos;
             const pedido: Pedido = {
               id: item.Codigo,
               empresa: item.Empresa || "",
               estado: item.Estado || "",
               fecha: item.Fecha || "",
               precio: item.Precio || 0,
-              productos: productos,
+              productos: productosPrueba,
               usuario: 'admin',
             };
             this.pedidos.push(pedido);
