@@ -65,7 +65,7 @@ export class PedidosComponent implements OnInit{
               fecha: item.Fecha || "",
               precio: item.Precio || 0,
               productos: productos,
-              usuario: '',
+              usuario: 'admin',
             };
             this.pedidos.push(pedido);
           }

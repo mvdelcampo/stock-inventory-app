@@ -303,6 +303,7 @@ export class APIService {
       query: statement,
       variables: gqlAPIServiceArguments
     })) as any;
+    //console.log('queri:', <ListPedidosQuery>response.data.listPedidos.items);
     return <ListPedidosQuery>response.data.listPedidos;
   }
   OnCreatePedidoListener(
@@ -347,6 +348,7 @@ export class APIService {
     if (Precio) {
       gqlAPIServiceArguments.Precio = Precio;
     }
+    
     return this.client.graphql({
       query: statement,
       variables: gqlAPIServiceArguments
