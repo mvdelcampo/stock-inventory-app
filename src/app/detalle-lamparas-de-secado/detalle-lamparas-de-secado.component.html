@@ -11,29 +11,42 @@
 <div class="container mt-3">
 
   <h3>Lámparas de Secado Modelo:  {{ modelo }}</h3>
+  <div class="d-flex justify-content-end mb-3">
+    <div class="btn-group">
+      <button class="btn btn-outline-info" (click)="filtrarLamparas('en_stock')">En Stock</button>
+      <button class="btn btn-outline-info" (click)="filtrarLamparas('en_proceso')">En Proceso</button>
+      <button class="btn btn-outline-info" (click)="filtrarLamparas('vendido')">Vendido</button>
+      <button class="btn btn-outline-info" (click)="filtrarLamparas('')">Todos</button>
+    </div>
+  </div>
+  
   <table class="table table-hover">
     <thead class="table-primary">
       <tr>
         <th>Código</th>
+        <th>Ubicación</th>
         <th>Proveedor</th>
         <th>Estado</th>
       </tr>
     </thead>
     <tbody>
-      <div *ngIf="detallesLamparas">
-        <tr *ngFor="let elemento of detallesLamparas">
-            <td class="col-sm-4"> 
-              {{ elemento.codigo }}
+      <ng-container *ngIf="detallesLamparas">
+        <tr *ngFor="let elemento of lamparasFiltradas">
+            <td> 
+              {{ elemento.Codigo }}
             </td>
-            <td class="col-sm-4">
-              {{ elemento.proveedor }}
+            <td>
+              {{ elemento.Ubicacion }}
             </td>
-            <td class="col-sm-4">
-              {{ elemento.estado }}
+            <td>
+              {{ elemento.Proveedor }}
+            </td>
+            <td>
+              {{ elemento.Estado }}
             </td>
           </tr>
-        </div>
-  </tbody>
+      </ng-container>
+    </tbody>
   </table>
 </div>
 

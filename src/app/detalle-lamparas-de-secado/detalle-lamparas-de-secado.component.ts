@@ -10,6 +10,7 @@ import { ProductosServicio } from '../servicios/productos.service';
 export class DetalleLamparasDeSecadoComponent implements OnInit{
   modelo: string = "";
   detallesLamparas: any[] = [];
+  lamparasFiltradas = this.detallesLamparas;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,14 @@ export class DetalleLamparasDeSecadoComponent implements OnInit{
         console.error('Error al obtener datos', error);
       }
     );
+  }
+
+  filtrarLamparas(estado: string): void {
+    if (estado) {
+      this.lamparasFiltradas = this.detallesLamparas.filter(elemento => elemento.estado === estado);
+    } else {
+      this.lamparasFiltradas = this.detallesLamparas;
+    }
   }
 
 }

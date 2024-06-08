@@ -14,13 +14,23 @@ export class CabinasDePinturaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCabinasAgrupadas();
-    this.obtenerCantidadTotal();
+    this.service.obtenerCantidadTotalProductos("Cabina de pintura").subscribe(
+      total => {
+        console.log('Total productos:', total);
+        this.cantidadTotal = total;
+      },
+      error => {
+        console.error('Error al obtener la cantidad total de productos', error);
+      }
+    );
   }
 
-  obtenerCabinasAgrupadas() {
-    this.cabinasAgrupadas = this.service.obtenerElevadoresAgrupados();
-  }
-  obtenerCantidadTotal() {
-    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores();
+  obtenerCabinasAgrupadas(): void {
+    this.service.obtenerProductosAgrupados("Cabina de pintura").subscribe(data => {
+      this.cabinasAgrupadas = data;
+      console.log(data);
+    }, error => {
+      console.error('Error al obtener los productos agrupados', error);
+    });
   }
 }

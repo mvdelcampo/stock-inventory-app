@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosServicio } from '../servicios/productos.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-balanceadoras',
@@ -14,13 +15,23 @@ export class BalanceadorasComponent implements OnInit{
 
   ngOnInit(): void {
     this.obtenerBalanceadorasAgrupadas();
-    this.obtenerCantidadTotal();
+    this.service.obtenerCantidadTotalProductos("Balanceadora").subscribe(
+      total => {
+        console.log('Total productos:', total);
+        this.cantidadTotal = total;
+      },
+      error => {
+        console.error('Error al obtener la cantidad total de productos', error);
+      }
+    );
   }
 
-  obtenerBalanceadorasAgrupadas() {
-    this.balanceadorasAgrupadas = this.service.obtenerElevadoresAgrupados();
-  }
-  obtenerCantidadTotal() {
-    this.cantidadTotal = this.service.obtenerCantidadTotalElevadores(); 
+  obtenerBalanceadorasAgrupadas(): void {
+    this.service.obtenerProductosAgrupados("Balanceadora").subscribe(data => {
+      this.balanceadorasAgrupadas = data;
+      console.log(data);
+    }, error => {
+      console.error('Error al obtener los productos agrupados', error);
+    });
   }
 }

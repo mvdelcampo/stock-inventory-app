@@ -15,24 +15,28 @@
     <thead class="table-primary">
       <tr>
         <th>Código</th>
+        <th>Ubicación</th>
         <th>Proveedor</th>
         <th>Estado</th>
       </tr>
     </thead>
     <tbody>
-      <div *ngIf="detallesElevadores">
+      <ng-container *ngIf="detallesElevadores">
         <tr *ngFor="let elemento of detallesElevadores">
-            <td class="col-sm-4"> 
-              {{ elemento.codigo }}
+            <td> 
+              {{ elemento.Codigo }}
             </td>
-            <td class="col-sm-4">
-              {{ elemento.proveedor }}
+            <td>
+              {{ elemento.Ubicacion }}
             </td>
-            <td class="col-sm-4">
-              {{ elemento.estado }}
+            <td>
+              {{ elemento.Proveedor }}
+            </td>
+            <td>
+              {{ elemento.Estado }}
             </td>
           </tr>
-        </div>
+      </ng-container>
     </tbody>
   </table>
 </div>

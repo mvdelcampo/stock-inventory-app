@@ -15,16 +15,13 @@
   <body>
     <div class="container mt-3">
       <div class="button-container margin-top-20">
-        <button type="button" class="btn btn-outline-primary">
-          Agregar Stock
-        </button>
         <button type="button" class="btn btn-outline-primary" routerLink="/nuevo-producto">
-          Cargar nuevo producto
+          Agregar Stock
         </button>
       </div>
 
       <div class="badge-container margin-top-20">
-        <h3 class="dm-sans-titulos">Lámparas de Secado en Stock</h3>
+        <h3 class="dm-sans-titulos">Lámparas de Secado</h3>
         <span class="badge badge-celestito"
           >Cantidad total: {{ cantidadTotal }}</span
         >
@@ -36,7 +33,6 @@
             <th> </th>
             <th>Modelo</th>
             <th>Marca</th>
-            <th>Ubicación</th>
             <th>Precio</th>
             <th>Cantidad</th>
           </tr>
@@ -46,26 +42,23 @@
             <td class="col-sm-1">
               <a
                 class="btn btn-link icon-link btn-sm"
-                [routerLink]="['/lamparas-de-secado/', lampara.modelo.toLowerCase()]"
+                [routerLink]="['/lamparas-de-secado/', lampara.Modelo]"
               >
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </td>
             <td class="col-sm-2">
               
-              {{ lampara.modelo }}
+              {{ lampara.Modelo }}
             </td>
             <td class="col-sm-2">
-              {{ lampara.marca }}
-            </td>
-            <td class="col-sm-3">
-              {{ lampara.ubicacion }}
+              {{ lampara.Marca }}
             </td>
             <td class="col-sm-2">
-              {{ lampara.precio }}
+              {{ lampara.Precio }}
             </td>
             <td class="col-sm-2">
-              {{ lampara.cantidad }}
+              {{ lampara.Cantidad }}
             </td>
           </tr>
         </tbody>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ProductosServicio } from '../servicios/productos.service';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -10,21 +11,31 @@ import { ActivatedRoute } from '@angular/router';
 export class NuevoProductoComponent{
   productoForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: ProductosServicio) {
     this.productoForm = this.fb.group({
-      codigo: ['', Validators.required],
-      tipo: ['', Validators.required],
-      marca: ['', Validators.required],
-      modelo: ['', Validators.required],
-      ubicacion: ['', Validators.required],
-      proveedor: ['', Validators.required],
-      precio: ['', [Validators.required, Validators.min(0)]],
+      Codigo: ['', Validators.required],
+      Modelo: ['', Validators.required],
+      Ubicacion: ['', Validators.required],
+      Proveedor: ['', Validators.required],
     });
   }
 
 
   onSubmit(): void {
     console.log(this.productoForm.value);
-    // Lógica para enviar el formulario
+    if (this.productoForm.valid) {
+      this.service.crearProducto(this.productoForm.value).subscribe(
+        response => {
+          console.log('Producto creado exitosamente', response);
+          // Aquí puedes agregar lógica adicional, como mostrar un mensaje de éxito o redirigir al usuario
+        },
+        error => {
+          console.error('Error al crear el producto', error);
+          // Aquí puedes agregar lógica adicional para manejar el error
+        }
+      );
+    } else {
+      console.log('Formulario no válido');
+    }
   }
 }
