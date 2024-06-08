@@ -1,0 +1,33 @@
+# this is an auto generated file. This will be overwritten
+
+query GetPedido($Codigo: Int!) {
+  getPedido(Codigo: $Codigo) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}
+
+query ListPedidos(
+  $filter: TablePedidoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPedidos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      Codigo
+      Empresa
+      Estado
+      Fecha
+      Precio
+      Productos
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}

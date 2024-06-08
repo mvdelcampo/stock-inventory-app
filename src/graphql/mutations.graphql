@@ -1,0 +1,37 @@
+# this is an auto generated file. This will be overwritten
+
+mutation CreatePedido($input: CreatePedidoInput!) {
+  createPedido(input: $input) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}
+
+mutation UpdatePedido($input: UpdatePedidoInput!) {
+  updatePedido(input: $input) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}
+
+mutation DeletePedido($input: DeletePedidoInput!) {
+  deletePedido(input: $input) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}

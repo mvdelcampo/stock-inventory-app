@@ -1,0 +1,73 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreatePedido(
+  $Codigo: Int
+  $Empresa: String
+  $Estado: String
+  $Fecha: String
+  $Precio: Int
+) {
+  onCreatePedido(
+    Codigo: $Codigo
+    Empresa: $Empresa
+    Estado: $Estado
+    Fecha: $Fecha
+    Precio: $Precio
+  ) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}
+
+subscription OnUpdatePedido(
+  $Codigo: Int
+  $Empresa: String
+  $Estado: String
+  $Fecha: String
+  $Precio: Int
+) {
+  onUpdatePedido(
+    Codigo: $Codigo
+    Empresa: $Empresa
+    Estado: $Estado
+    Fecha: $Fecha
+    Precio: $Precio
+  ) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}
+
+subscription OnDeletePedido(
+  $Codigo: Int
+  $Empresa: String
+  $Estado: String
+  $Fecha: String
+  $Precio: Int
+) {
+  onDeletePedido(
+    Codigo: $Codigo
+    Empresa: $Empresa
+    Estado: $Estado
+    Fecha: $Fecha
+    Precio: $Precio
+  ) {
+    Codigo
+    Empresa
+    Estado
+    Fecha
+    Precio
+    Productos
+    __typename
+  }
+}
