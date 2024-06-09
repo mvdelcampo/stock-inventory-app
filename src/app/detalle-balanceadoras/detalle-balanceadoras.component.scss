@@ -47,3 +47,26 @@
   .table-hover td, th {
     border: 1px solid #333; /* Add a fine border */
   }
+  .dm-sans-titulos {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+  .btn-custom {
+    background-color: #CFE2FF;
+    border: 2px solid #AFCDFE; /* Agrega el borde de manera constante */
+    color: #000; /* Color del texto */
+    transition: background-color 0.3s, border-color 0.3s; /* Transición suave */
+  }
+  
+  .btn-custom:hover {
+    background-color: #B8D5FF; /* Un poco más oscuro en hover */
+    border-color: #AFCDFE; /* Mantén el borde del mismo color */
+  }
+  
+  .btn-custom:active {
+    background-color: #AFCDFE; /* Un tono más oscuro para el botón activo */
+    border-color: #7FB3FF; /* Un borde un poco más oscuro para el activo */
+    color: #000;
+  }

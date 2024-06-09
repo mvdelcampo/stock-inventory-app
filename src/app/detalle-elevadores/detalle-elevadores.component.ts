@@ -10,6 +10,8 @@ import { ProductosServicio } from '../servicios/productos.service';
 export class DetalleElevadoresComponent implements OnInit {
   modelo: string = "";
   detallesElevadores: any[] = [] ;
+  elevadoresFiltrados = this.detallesElevadores;
+  filtroActivo: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -27,12 +29,22 @@ export class DetalleElevadoresComponent implements OnInit {
     this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
       (response) => {
         this.detallesElevadores = response;
+        this.filtrarElevadores('');
         console.log(this.detallesElevadores);
       },
       (error) => {
         console.error('Error al obtener datos', error);
       }
     );
+  }
+
+  filtrarElevadores(filtro: string): void {
+    this.filtroActivo = filtro;
+    if (this.filtroActivo) {
+      this.elevadoresFiltrados = this.detallesElevadores.filter(producto => producto.Estado === this.filtroActivo);
+    } else {
+      this.elevadoresFiltrados = this.detallesElevadores;
+    }
   }
 
 }

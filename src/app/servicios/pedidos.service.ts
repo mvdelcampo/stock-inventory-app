@@ -1,11 +1,14 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidosServicio {
+  rutaBase: string = "https://9s7wh83mwa.execute-api.us-east-2.amazonaws.com/dev";
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   obtenerPedidos() {
     // Supongamos que aquí realizas una solicitud HTTP para obtener los datos de los productos
@@ -68,5 +71,20 @@ export class PedidosServicio {
       { id: '2', productos: ["4", "5"], fecha: '30/01/2024', empresa: 'Lidenor', estado: "En proceso", precio: "$100000", usuario: "Pedro Paz"},
       { id: '3', productos: ["1", "6"], fecha: '14/04/2024', empresa: 'Fact', estado: "Entregado", precio: "$100000", usuario: "Jimena Gomez" }
     ];*/
+  }
+
+  crearPedido(pedido: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    console.log(this.rutaBase + "/pedidos", pedido, { headers })
+
+    return this.http.post<any>(this.rutaBase + "/pedidos", pedido, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+  private handleError(error: HttpErrorResponse) {
+    return throwError(error);
   }
 }

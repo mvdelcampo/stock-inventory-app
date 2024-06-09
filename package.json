@@ -20,6 +20,7 @@
     "@angular/platform-server": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@angular/ssr": "^17.3.7",
+    "@aws-amplify/api": "^6.0.37",
     "@fortawesome/fontawesome-free": "^6.5.2",
     "aws-amplify": "^6.3.6",
     "aws-sdk": "^2.1637.0",

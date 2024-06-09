@@ -28,7 +28,7 @@ export class BalanceadorasComponent implements OnInit{
 
   obtenerBalanceadorasAgrupadas(): void {
     this.service.obtenerProductosAgrupados("Balanceadora").subscribe(data => {
-      this.balanceadorasAgrupadas = data;
+      this.balanceadorasAgrupadas = data.sort((a: { Cantidad: number; }, b: { Cantidad: number; }) => b.Cantidad - a.Cantidad);
       console.log(data);
     }, error => {
       console.error('Error al obtener los productos agrupados', error);

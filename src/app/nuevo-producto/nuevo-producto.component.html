@@ -1,5 +1,8 @@
 <div class="container mt-5">
   <h3 class="form-title dm-sans-titulos text-center">Agregar stock de un producto</h3>
+  <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+    {{ successMessage }}
+  </div>
   <div class="form-container">
     <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
       <div class="mb-3 form-group">
@@ -47,7 +50,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="submit" class="btn btn-primary" [disabled]="productoForm.invalid">Cargar producto</button>
+        <button type="submit" class="btn btn-custom" [disabled]="productoForm.invalid">Cargar producto</button>
       </div>
     </form>
   </div>

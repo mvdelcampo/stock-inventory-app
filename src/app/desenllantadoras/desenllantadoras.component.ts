@@ -27,7 +27,7 @@ export class DesenllantadorasComponent implements OnInit{
 
   obtenerDesenllantadorasAgrupadas(): void {
     this.service.obtenerProductosAgrupados("Desenllantadora").subscribe(data => {
-      this.desenllantadorasAgrupadas = data;
+      this.desenllantadorasAgrupadas = data.sort((a: { Cantidad: number; }, b: { Cantidad: number; }) => b.Cantidad - a.Cantidad);
       console.log(data);
     }, error => {
       console.error('Error al obtener los productos agrupados', error);

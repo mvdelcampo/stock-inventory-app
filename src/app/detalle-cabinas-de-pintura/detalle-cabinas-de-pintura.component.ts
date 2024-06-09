@@ -10,6 +10,8 @@ import { ProductosServicio } from '../servicios/productos.service';
 export class DetalleCabinasDePinturaComponent implements OnInit{
   modelo: string = "";
   detallesCabinas: any[] = [];
+  cabinasFiltradas = this.detallesCabinas;
+  filtroActivo: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -26,11 +28,20 @@ export class DetalleCabinasDePinturaComponent implements OnInit{
     this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
       (response) => {
         this.detallesCabinas = response;
+        this.filtrarCabinas('');
         console.log(this.detallesCabinas);
       },
       (error) => {
         console.error('Error al obtener datos', error);
       }
     );
+  }
+  filtrarCabinas(filtro: string): void {
+    this.filtroActivo = filtro;
+    if (this.filtroActivo) {
+      this.cabinasFiltradas = this.detallesCabinas.filter(producto => producto.Estado === this.filtroActivo);
+    } else {
+      this.cabinasFiltradas = this.detallesCabinas;
+    }
   }
 }

@@ -15,7 +15,7 @@
   <body>
     <div class="container mt-3">
       <div class="button-container margin-top-20">
-        <button type="button" class="btn btn-outline-primary" routerLink="/nuevo-producto">
+        <button type="button" class="btn btn-custom" routerLink="/nuevo-producto">
           Agregar Stock
         </button>
       </div>
@@ -54,7 +54,7 @@
               {{ elevador.Marca }}
             </td>
             <td class="col-sm-2">
-              {{ elevador.Precio }}
+              USD$ {{ elevador.Precio }}
             </td>
             <td class="col-sm-2">
               {{ elevador.Cantidad }}

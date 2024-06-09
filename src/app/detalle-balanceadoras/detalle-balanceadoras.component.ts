@@ -10,6 +10,8 @@ import { ProductosServicio } from '../servicios/productos.service';
 export class DetalleBalanceadorasComponent implements OnInit{
   modelo: string = "";
   detallesBalanceadoras: any[] = [];
+  balanceadorasFiltradas = this.detallesBalanceadoras;
+  filtroActivo: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +28,19 @@ export class DetalleBalanceadorasComponent implements OnInit{
   obtenerDetallesBalanceadoras(modelo: string): void{
     this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(data => {
       this.detallesBalanceadoras = data;
+      console.log("aca")
+      console.log(this.detallesBalanceadoras)
+      this.filtrarBalanceadoras('');
     }, error =>{
       console.error('Error al obtener los detalles de los productos', error);
     });
+  }
+  filtrarBalanceadoras(filtro: string): void {
+    this.filtroActivo = filtro;
+    if (this.filtroActivo) {
+      this.balanceadorasFiltradas = this.detallesBalanceadoras.filter(producto => producto.Estado === this.filtroActivo);
+    } else {
+      this.balanceadorasFiltradas = this.detallesBalanceadoras;
+    }
   }
 }

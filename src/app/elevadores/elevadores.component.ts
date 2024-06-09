@@ -27,7 +27,7 @@ export class ElevadoresComponent implements OnInit {
 
   obtenerElevadoresAgrupados(): void {
     this.service.obtenerProductosAgrupados("Elevador").subscribe(data => {
-      this.elevadoresAgrupados = data;
+      this.elevadoresAgrupados = data.sort((a: { Cantidad: number; }, b: { Cantidad: number; }) => b.Cantidad - a.Cantidad);
       console.log(data);
     }, error => {
       console.error('Error al obtener los productos agrupados', error);

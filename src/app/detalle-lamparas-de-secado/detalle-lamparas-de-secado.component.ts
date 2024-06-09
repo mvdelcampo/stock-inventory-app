@@ -11,6 +11,7 @@ export class DetalleLamparasDeSecadoComponent implements OnInit{
   modelo: string = "";
   detallesLamparas: any[] = [];
   lamparasFiltradas = this.detallesLamparas;
+  filtroActivo: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -22,12 +23,14 @@ export class DetalleLamparasDeSecadoComponent implements OnInit{
       this.modelo = params.get('modelo') || "";
       this.obtenerDetallesLamparas(this.modelo);
     });
+    
   }
 
   obtenerDetallesLamparas(modelo: string): void{
     this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
       (response) => {
         this.detallesLamparas = response;
+        this.filtrarLamparas('');
         console.log(this.detallesLamparas);
       },
       (error) => {
@@ -36,9 +39,10 @@ export class DetalleLamparasDeSecadoComponent implements OnInit{
     );
   }
 
-  filtrarLamparas(estado: string): void {
-    if (estado) {
-      this.lamparasFiltradas = this.detallesLamparas.filter(elemento => elemento.estado === estado);
+  filtrarLamparas(filtro: string): void {
+    this.filtroActivo = filtro;
+    if (this.filtroActivo) {
+      this.lamparasFiltradas = this.detallesLamparas.filter(lampara => lampara.Estado === this.filtroActivo);
     } else {
       this.lamparasFiltradas = this.detallesLamparas;
     }

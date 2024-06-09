@@ -11,6 +11,8 @@ import { map, switchMap } from 'rxjs/operators';
 export class DetalleDesenllantadorasComponent implements OnInit{
   modelo: string = "";
   detallesDesenllantadoras: any[] = [];
+  desenllantadorasFiltradas = this.detallesDesenllantadoras;
+  filtroActivo: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -27,12 +29,21 @@ export class DetalleDesenllantadorasComponent implements OnInit{
     this.service.obtenerDetallesProductosPorModelo(modelo).subscribe(
       (response) => {
         this.detallesDesenllantadoras = response;
+        this.filtrarDesenllantadoras('');
         console.log(this.detallesDesenllantadoras);
       },
       (error) => {
         console.error('Error al obtener datos', error);
       }
     );
+  }
+  filtrarDesenllantadoras(filtro: string): void {
+    this.filtroActivo = filtro;
+    if (this.filtroActivo) {
+      this.desenllantadorasFiltradas = this.detallesDesenllantadoras.filter(producto => producto.Estado === this.filtroActivo);
+    } else {
+      this.desenllantadorasFiltradas = this.detallesDesenllantadoras;
+    }
   }
   
 }

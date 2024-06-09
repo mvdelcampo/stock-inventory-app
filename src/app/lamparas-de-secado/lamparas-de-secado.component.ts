@@ -26,7 +26,7 @@ export class LamparasDeSecadoComponent implements OnInit {
   }
   obtenerLamparasAgrupadas(): void {
     this.service.obtenerProductosAgrupados("Lampara de secado").subscribe(data => {
-      this.lamparasAgrupadas = data;
+      this.lamparasAgrupadas = data.sort((a: { Cantidad: number; }, b: { Cantidad: number; }) => b.Cantidad - a.Cantidad);
       console.log(data);
     }, error => {
       console.error('Error al obtener los productos agrupados', error);

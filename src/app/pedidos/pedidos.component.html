@@ -13,7 +13,7 @@
 
 <div class="container mt-3">
   <div class="button-container margin-top-20">
-    <button type="button" class="btn btn-outline-primary" routerLink="/nuevo-pedido">
+    <button type="button" class="btn btn-custom" routerLink="/nuevo-pedido">
       Cargar nuevo pedido
     </button>
   </div>
@@ -52,7 +52,7 @@
             {{ pedido.estado }}
           </td>
           <td class="col-sm-2">
-            {{ pedido.precio }}
+            USD$ {{ pedido.precio }}
           </td>
           <td class="col-sm-2">
             {{ pedido.usuario }}

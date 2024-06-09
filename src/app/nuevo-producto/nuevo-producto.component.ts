@@ -10,6 +10,8 @@ import { ProductosServicio } from '../servicios/productos.service';
 })
 export class NuevoProductoComponent{
   productoForm: FormGroup;
+  successMessage: string = '';
+  showSuccessMessage: boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private service: ProductosServicio) {
     this.productoForm = this.fb.group({
@@ -27,7 +29,12 @@ export class NuevoProductoComponent{
       this.service.crearProducto(this.productoForm.value).subscribe(
         response => {
           console.log('Producto creado exitosamente', response);
-          // Aquí puedes agregar lógica adicional, como mostrar un mensaje de éxito o redirigir al usuario
+          this.successMessage = 'Producto creado exitosamente';
+          this.showSuccessMessage = true;
+          setTimeout(() => {
+            this.showSuccessMessage = false;
+          }, 3000); // Oculta el mensaje después de 3 segundos
+          this.productoForm.reset();
         },
         error => {
           console.error('Error al crear el producto', error);

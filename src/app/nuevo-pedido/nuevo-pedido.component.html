@@ -1,57 +1,65 @@
-<div class="container mt-5">
-    <h3 class="form-title dm-sans-titulos text-center">Cargar nuevo pedido</h3>
-    <div class="form-container">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h3 class="form-title dm-sans-titulos text-center">Cargar nuevo pedido</h3>
+      <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+      <div class="form-container">
         <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3 form-group">
-          <label for="fecha">Fecha:</label>
-          <input type="date" class="form-control" id="fecha" formControlName="fecha" />
-          <div *ngIf="pedidoForm.controls['fecha'].invalid && pedidoForm.controls['fecha'].touched" class="text-danger">
-            Fecha es obligatoria
+          <div class="mb-3 form-group">
+            <label for="Codigo">Codigo:</label>
+            <input type="number" class="form-control" id="Codigo" formControlName="Codigo" />
+            <div *ngIf="pedidoForm.get('Codigo')?.invalid && pedidoForm.get('Codigo')?.touched" class="text-danger">
+              Este campo es obligatorio
+            </div>
           </div>
-        </div>
-        <div class="mb-3 form-group">
-          <label for="empresa">Empresa:</label>
-          <input type="text" class="form-control" id="empresa" formControlName="empresa" />
-          <div *ngIf="pedidoForm.controls['empresa'].invalid && pedidoForm.controls['empresa'].touched" class="text-danger">
-            Empresa es obligatoria
+
+          <div class="mb-3 form-group">
+            <label for="Empresa">Empresa:</label>
+            <input type="text" class="form-control" id="Empresa" formControlName="Empresa" />
+            <div *ngIf="pedidoForm.get('Empresa')?.invalid && pedidoForm.get('Empresa')?.touched" class="text-danger">
+              Este campo es obligatorio
             </div>
-        </div>
-        <div class="mb-3 form-group">
-          <label for="estado">Estado:</label>
-          <select class="form-control" id="estado" formControlName="estado">
-            <option value="">Seleccione el estado en el que se encuentra el pedido</option>
-            <option value="En proceso">En proceso</option>
-            <option value="En camino">En camino</option>
-            <option value="Entregado">Entregado</option>
-          </select>
-          <div *ngIf="pedidoForm.controls['estado'].invalid && pedidoForm.controls['estado'].touched" class="text-danger">
-            Estado es obligatorio
           </div>
-        </div>
-        <div class="mb-3 form-group">
-            <div class="mb-3 form-group">
-                <label for="codigoBarras">Ingrese los códigos de barras de los productos:</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="codigoBarras" #codigoBarrasInput (keyup.enter)="agregarCodigoBarras(codigoBarrasInput.value)" />
-                    <button class="btn btn-outline-secondary" type="button" (click)="agregarCodigoBarras(codigoBarrasInput.value)">
-                        Agregar
-                    </button>
-                </div>
+          <div class="mb-3 form-group" formArrayName="Productos">
+            <label>Productos:</label>
+            <div *ngFor="let producto of productos.controls; let i = index" [formGroupName]="i" class="mb-3 input-group">
+              <select class="form-control" formControlName="Modelo">
+                <option value="">Seleccionar modelo</option>
+                <option *ngFor="let modelo of modelos" [value]="modelo">{{ modelo }}</option>
+              </select>
+              <input type="number" class="form-control" formControlName="Cantidad" placeholder="Cantidad" />
+              <button class="btn btn-danger btn-pastel" type="button" (click)="eliminarProducto(i)">Eliminar</button>
             </div>
-            <div class="mb-3 form-group">
-                <span *ngFor="let codigo of codigosBarras" class="badges-container mr-2">
-                    <button class="badge badge-info">{{ codigo }}</button>
-                    <span class="badge-close" (click)="eliminarCodigoBarras(codigo)">x</span>
-                </span>
-                <div *ngIf="pedidoForm.controls['productos'].invalid && pedidoForm.controls['productos'].touched" class="text-danger">
-                    Productos es obligatorio
-                </div>
+            <div *ngFor="let producto of productos.controls; let i = index">
+              <div *ngIf="producto.invalid && (producto.dirty || producto.touched)" class="text-danger">
+                <div *ngIf="producto.get('Modelo')?.errors?.['required']">Modelo es requerido.</div>
+                <div *ngIf="producto.get('Cantidad')?.errors?.['required']">Cantidad es requerida.</div>
+                <div *ngIf="producto.get('Cantidad')?.errors?.['min']">Cantidad debe ser mayor a 0.</div>
+              </div>
             </div>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary" [disabled]="pedidoForm.invalid">Cargar pedido</button>
-        </div>
-      </form>
+            
+            <button class="btn btn-custom btn-sm" type="button" (click)="agregarProducto()">Agregar Producto</button>
+          </div>
+          <div class="text-center mt-3">
+            <button class="btn btn-custom" type="submit" [disabled]="pedidoForm.invalid">Cargar pedido</button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
-  
+  </body>
+</html>

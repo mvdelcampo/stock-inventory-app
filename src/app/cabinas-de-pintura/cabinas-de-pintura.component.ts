@@ -27,7 +27,7 @@ export class CabinasDePinturaComponent implements OnInit {
 
   obtenerCabinasAgrupadas(): void {
     this.service.obtenerProductosAgrupados("Cabina de pintura").subscribe(data => {
-      this.cabinasAgrupadas = data;
+      this.cabinasAgrupadas = data.sort((a: { Cantidad: number; }, b: { Cantidad: number; }) => b.Cantidad - a.Cantidad);
       console.log(data);
     }, error => {
       console.error('Error al obtener los productos agrupados', error);

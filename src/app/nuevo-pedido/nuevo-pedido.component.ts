@@ -1,50 +1,81 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { PedidosServicio } from '../servicios/pedidos.service';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-nuevo-pedido',
   templateUrl: './nuevo-pedido.component.html',
-  styleUrl: './nuevo-pedido.component.scss',
+  styleUrls: ['./nuevo-pedido.component.scss'],
 })
 export class NuevoPedidoComponent {
   pedidoForm: FormGroup;
-  codigosBarras: string[] = [];
+  successMessage: string = '';
+  showSuccessMessage: boolean = false;
+  errorMessage: string = '';
+  showErrorMessage: boolean = false;
+  modelos: string[] = ['B400', 'B600', 'B890', 'C130', 'C400', 'D780','E200', 'E550', 'E680','L800', 'L780', 'L900']; // Agrega aquí tus modelos predefinidos
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: PedidosServicio) {
     this.pedidoForm = this.fb.group({
-      fecha: ['', Validators.required],
-      empresa: ['', Validators.required],
-      estado: ['', Validators.required],
-      productos: ['', Validators.required], // Inicialmente vacío
-      // id: ['', Validators.required], autogenerado en la BD
-      // precio: ['', [Validators.required, Validators.min(0)]], calcular, va a ser la suma de los precios de los productos, capaz mostrar esa suma en pantalla
-      // usuario: ['', Validators.required], completado tomando el usuario activo
+      Codigo: ['', Validators.required],
+      Empresa: ['', Validators.required],
+      Productos: this.fb.array([]) // Array para los productos
     });
   }
 
-  agregarCodigoBarras(codigo: string): void {
-    if (codigo.trim() !== '' && !this.codigosBarras.includes(codigo.trim())) {
-      this.codigosBarras.push(codigo.trim());
-      const productosControl = this.pedidoForm.get('productos');
-      productosControl?.setValue([...productosControl.value, codigo.trim()]);
-    }
+  ngOnInit(): void {
+    this.agregarProducto(); // Agregar un producto por defecto al inicializar
   }
 
-  eliminarCodigoBarras(codigo: string): void {
-    const index = this.codigosBarras.indexOf(codigo);
-    if (index !== -1) {
-      this.codigosBarras.splice(index, 1);
-      const productosControl = this.pedidoForm.get('productos');
-      const newValue = productosControl?.value.filter(
-        (value: string) => value !== codigo
-      );
-      productosControl?.setValue(newValue);
-    }
+  get productos(): FormArray {
+    return this.pedidoForm.get('Productos') as FormArray;
   }
 
+  agregarProducto(): void {
+    this.productos.push(this.fb.group({
+      Modelo: ['', Validators.required],
+      Cantidad: ['', [Validators.required, Validators.min(1)]]
+    }));
+  }
+
+  eliminarProducto(index: number): void {
+    this.productos.removeAt(index);
+  }
+  
   onSubmit(): void {
     console.log(this.pedidoForm.value);
-    // Lógica para enviar el formulario
+    if (this.pedidoForm.valid) {
+      this.service.crearPedido(this.pedidoForm.value).pipe(
+        catchError(error => {
+          console.error('Error al crear el producto', error);
+          if (error.status === 400 && error.error) {
+            this.errorMessage = error.error; // Asigna el mensaje de error al string del cuerpo
+          } else {
+            this.errorMessage = 'Error al crear el pedido';
+          }
+          return throwError(error);
+        })
+      ).subscribe(
+        response => {
+          if(response.statusCode === 400){
+            this.errorMessage = response.body;
+            this.showErrorMessage = true;
+            console.log("Error al crear el pedido porque no hay stock");
+          }else{
+            this.successMessage = 'Pedido creado exitosamente';
+            this.showSuccessMessage = true;
+            console.log('Pedido creado exitosamente', response);
+            setTimeout(() => {
+              this.showSuccessMessage = false;
+            }, 3000); // Oculta el mensaje después de 3 segundos
+            this.pedidoForm.reset();
+            this.productos.clear();
+          }
+        }
+      );
+    } else {
+      console.log('Formulario no válido');
+    }
   }
 }
