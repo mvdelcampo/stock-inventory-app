@@ -28,8 +28,8 @@ export class NuevoProductoComponent{
     if (this.productoForm.valid) {
       this.service.crearProducto(this.productoForm.value).subscribe(
         response => {
-          console.log('Producto creado exitosamente', response);
-          this.successMessage = 'Producto creado exitosamente';
+          console.log('Producto cargado exitosamente', response);
+          this.successMessage = 'Producto cargado exitosamente';
           this.showSuccessMessage = true;
           setTimeout(() => {
             this.showSuccessMessage = false;
